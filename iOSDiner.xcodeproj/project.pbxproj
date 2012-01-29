@@ -57,6 +57,8 @@
 		4BB66CFB14D5452000E7733D /* total_field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BB66CD114D5452000E7733D /* total_field@2x.png */; };
 		4BB66CFC14D5452000E7733D /* total_field_stretch.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BB66CD214D5452000E7733D /* total_field_stretch.png */; };
 		4BB66CFD14D5452000E7733D /* total_field_stretch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BB66CD314D5452000E7733D /* total_field_stretch@2x.png */; };
+		4BB66D0114D54B9F00E7733D /* IODItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB66D0014D54B9F00E7733D /* IODItem.m */; };
+		4BB66D0414D54BC100E7733D /* IODOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB66D0314D54BC100E7733D /* IODOrder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +117,10 @@
 		4BB66CD114D5452000E7733D /* total_field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "total_field@2x.png"; sourceTree = "<group>"; };
 		4BB66CD214D5452000E7733D /* total_field_stretch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = total_field_stretch.png; sourceTree = "<group>"; };
 		4BB66CD314D5452000E7733D /* total_field_stretch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "total_field_stretch@2x.png"; sourceTree = "<group>"; };
+		4BB66CFF14D54B9F00E7733D /* IODItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IODItem.h; path = Models/IODItem.h; sourceTree = "<group>"; };
+		4BB66D0014D54B9F00E7733D /* IODItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IODItem.m; path = Models/IODItem.m; sourceTree = "<group>"; };
+		4BB66D0214D54BC100E7733D /* IODOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IODOrder.h; path = Models/IODOrder.h; sourceTree = "<group>"; };
+		4BB66D0314D54BC100E7733D /* IODOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IODOrder.m; path = Models/IODOrder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +167,7 @@
 		4BB66C9114D5448300E7733D /* iOSDiner */ = {
 			isa = PBXGroup;
 			children = (
+				4BB66CFE14D54B3C00E7733D /* Models */,
 				4BB66CA814D5452000E7733D /* Resources */,
 				4BB66C9A14D5448300E7733D /* IODAppDelegate.h */,
 				4BB66C9B14D5448300E7733D /* IODAppDelegate.m */,
@@ -238,6 +245,17 @@
 				4BB66CD314D5452000E7733D /* total_field_stretch@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		4BB66CFE14D54B3C00E7733D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4BB66CFF14D54B9F00E7733D /* IODItem.h */,
+				4BB66D0014D54B9F00E7733D /* IODItem.m */,
+				4BB66D0214D54BC100E7733D /* IODOrder.h */,
+				4BB66D0314D54BC100E7733D /* IODOrder.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +366,8 @@
 				4BB66C9814D5448300E7733D /* main.m in Sources */,
 				4BB66C9C14D5448300E7733D /* IODAppDelegate.m in Sources */,
 				4BB66CA214D5448300E7733D /* IODViewController.m in Sources */,
+				4BB66D0114D54B9F00E7733D /* IODItem.m in Sources */,
+				4BB66D0414D54BC100E7733D /* IODOrder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

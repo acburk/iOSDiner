@@ -78,6 +78,7 @@ dispatch_queue_t queue;
         [self setInventory:[[IODItem retrieveInventoryItems] mutableCopy]];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateOrderBoard]; // <---- Add
             [self updateInventoryButtons]; // <---- Add
             [self updateCurrentInventoryItem]; // <---- Add
 
@@ -102,9 +103,21 @@ dispatch_queue_t queue;
 }
 
 - (IBAction)ibaRemoveItem:(id)sender {
+    IODItem* currentItem = [[self inventory] objectAtIndex:currentItemIndex];
+    
+    [order removeItemFromOrder:currentItem];
+    [self updateOrderBoard];
+    [self updateCurrentInventoryItem];
+    [self updateInventoryButtons];
 }
 
 - (IBAction)ibaAddItem:(id)sender {
+    IODItem* currentItem = [[self inventory] objectAtIndex:currentItemIndex];
+    
+    [order addItemToOrder:currentItem];
+    [self updateOrderBoard];
+    [self updateCurrentInventoryItem];
+    [self updateInventoryButtons];
 }
 
 - (IBAction)ibaLoadPreviousItem:(id)sender {

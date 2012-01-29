@@ -71,9 +71,14 @@ dispatch_queue_t queue;
     [super viewDidAppear:animated];
     
     [ibChalkboardLabel setText:@"Loading Inventory..."];
-    [self setInventory:[[IODItem retrieveInventoryItems] mutableCopy]];
-    [ibChalkboardLabel setText:@"Inventory Loaded\n\nHow can I help you?"];
-}
+    
+    dispatch_async(queue, ^{
+        [self setInventory:[[IODItem retrieveInventoryItems] mutableCopy]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{            
+            [ibChalkboardLabel setText:@"Inventory Loaded\n\nHow can I help you?"];
+        });
+    });}
 
 - (void)viewWillDisappear:(BOOL)animated
 {

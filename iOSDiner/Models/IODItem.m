@@ -7,6 +7,7 @@
 //
 
 #import "IODItem.h"
+#define kInventoryAddress @"http://adamburkepile.com/inventory/"
 
 @implementation IODItem
 
@@ -33,4 +34,20 @@
     return newItem;
 }
 
++ (NSArray*)retrieveInventoryItems {
+    NSMutableArray* inventory = [NSMutableArray new];
+    NSError* err = nil;
+    
+    NSArray* jsonInventory = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:kInventoryAddress]] 
+                                                             options:kNilOptions 
+                                                               error:&err];
+    [jsonInventory enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSDictionary* item = obj;
+        [inventory addObject:[[IODItem alloc] initWithName:[item objectForKey:@"Name"] 
+                                                  andPrice:[[item objectForKey:@"Price"] floatValue]
+                                            andPictureFile:[item objectForKey:@"Image"]]];
+    }];
+    
+    return [inventory copy];
+}
 @end

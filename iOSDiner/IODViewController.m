@@ -22,10 +22,16 @@
 @synthesize inventory;     // <---- #2
 @synthesize order;     // <---- #2
 
+dispatch_queue_t queue; 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+}
+
+-(void)dealloc {
+    dispatch_release(queue);
 }
 
 #pragma mark - View lifecycle
@@ -36,6 +42,8 @@
 
     currentItemIndex = 0;     // <---- #3
     [self setOrder:[IODOrder new]];     // <---- #4
+    
+    queue = dispatch_queue_create("com.adamburkepile.queue",nil); // <======
 }
 
 - (void)viewDidUnload
@@ -61,6 +69,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [ibChalkboardLabel setText:@"Loading Inventory..."];
+    [self setInventory:[[IODItem retrieveInventoryItems] mutableCopy]];
+    [ibChalkboardLabel setText:@"Inventory Loaded\n\nHow can I help you?"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

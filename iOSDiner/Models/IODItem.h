@@ -15,5 +15,5 @@
 @property (nonatomic,strong) NSString* pictureFile;
 
 - (id)initWithName:(NSString*)inName andPrice:(float)inPrice andPictureFile:(NSString*)inPictureFile;
-
++ (NSArray*)retrieveInventoryItems;
 @end

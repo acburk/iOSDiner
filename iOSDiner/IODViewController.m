@@ -70,12 +70,17 @@ dispatch_queue_t queue;
 {
     [super viewDidAppear:animated];
     
+    [self updateInventoryButtons]; // <---- Add
+
     [ibChalkboardLabel setText:@"Loading Inventory..."];
     
     dispatch_async(queue, ^{
         [self setInventory:[[IODItem retrieveInventoryItems] mutableCopy]];
         
-        dispatch_async(dispatch_get_main_queue(), ^{            
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateInventoryButtons]; // <---- Add
+            [self updateCurrentInventoryItem]; // <---- Add
+
             [ibChalkboardLabel setText:@"Inventory Loaded\n\nHow can I help you?"];
         });
     });}
@@ -110,4 +115,62 @@ dispatch_queue_t queue;
 
 - (IBAction)ibaCalculateTotal:(id)sender {
 }
+
+#pragma mark - Helper Methods
+
+- (void)updateCurrentInventoryItem {
+    if (currentItemIndex >= 0 && currentItemIndex < [[self inventory] count]) {
+        IODItem* currentItem = [[self inventory] objectAtIndex:currentItemIndex];
+        [ibCurrentItemLabel setText:[currentItem name]];
+        [ibCurrentItemImageView setImage:[UIImage imageNamed:[currentItem pictureFile]]];
+    }
+}
+
+- (void)updateInventoryButtons {
+    if (![self inventory] || [[self inventory] count] == 0) {
+        [ibAddItemButton setEnabled:NO];
+        [ibRemoveItemButton setEnabled:NO];
+        [ibNextItemButton setEnabled:NO];
+        [ibPreviousItemButton setEnabled:NO];
+        [ibTotalOrderButton setEnabled:NO];
+    }
+    else {
+        if (currentItemIndex <= 0) {
+            [ibPreviousItemButton setEnabled:NO];
+        }
+        else {
+            [ibPreviousItemButton setEnabled:YES];
+        }
+        
+        if (currentItemIndex >= [[self inventory] count]-1) {
+            [ibNextItemButton setEnabled:NO];
+        }
+        else {
+            [ibNextItemButton setEnabled:YES];
+        }
+        
+        IODItem* currentItem = [[self inventory] objectAtIndex:currentItemIndex];
+        if (currentItem) {
+            [ibAddItemButton setEnabled:YES];
+        }
+        else {
+            [ibAddItemButton setEnabled:NO];
+        }
+        
+        if (![[self order] findKeyForOrderItem:currentItem]) {
+            [ibRemoveItemButton setEnabled:NO];
+        }
+        else {
+            [ibRemoveItemButton setEnabled:YES];
+        }
+        
+        if ([[order orderItems] count] == 0) {
+            [ibTotalOrderButton setEnabled:NO];
+        }
+        else {
+            [ibTotalOrderButton setEnabled:YES];
+        }
+    }
+}
+
 @end

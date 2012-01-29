@@ -32,7 +32,7 @@
 - (IBAction)ibaLoadNextItem:(id)sender;
 - (IBAction)ibaCalculateTotal:(id)sender;
 
-
-
+- (void)updateCurrentInventoryItem;
+- (void)updateInventoryButtons;
 
 @end

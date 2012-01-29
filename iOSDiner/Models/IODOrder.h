@@ -14,4 +14,6 @@
 
 @property (nonatomic,strong) NSMutableDictionary* orderItems;
 
+- (IODItem*)findKeyForOrderItem:(IODItem*)searchItem;
+
 @end

@@ -167,6 +167,14 @@ dispatch_queue_t queue;
 }
 
 - (IBAction)ibaCalculateTotal:(id)sender {
+    float total = [order totalOrder];
+    
+    UIAlertView* totalAlert = [[UIAlertView alloc] initWithTitle:@"Total" 
+                                                         message:[NSString stringWithFormat:@"$%0.2f",total] 
+                                                        delegate:nil
+                                               cancelButtonTitle:@"Close" 
+                                               otherButtonTitles:nil];
+    [totalAlert show];
 }
 
 #pragma mark - Helper Methods

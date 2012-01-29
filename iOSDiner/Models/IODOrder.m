@@ -86,4 +86,22 @@
             [[self orderItems] setObject:[NSNumber numberWithInt:intQuantity] forKey:key];
     }
 }
+
+- (float)totalOrder {
+    __block float total = 0.0;
+    float (^itemTotal)(float,int) = ^float(float price, int quantity) {
+        return price * quantity;
+    };
+    
+    [[self orderItems] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        IODItem* item = (IODItem*)key;
+        NSNumber* quantity = (NSNumber*)obj;
+        int intQuantity = [quantity intValue];
+        
+        total += itemTotal([item price],intQuantity);
+    }];
+    
+    return total;
+}
+
 @end

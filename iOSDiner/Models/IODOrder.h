@@ -19,5 +19,6 @@
 - (NSString*)orderDescription;
 - (void)addItemToOrder:(IODItem*)inItem;
 - (void)removeItemFromOrder:(IODItem*)inItem;
+- (float)totalOrder;
 
 @end

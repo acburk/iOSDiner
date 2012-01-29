@@ -9,6 +9,14 @@
 #import "IODViewController.h"
 
 @implementation IODViewController
+@synthesize ibRemoveItemButton;
+@synthesize ibAddItemButton;
+@synthesize ibPreviousItemButton;
+@synthesize ibNextItemButton;
+@synthesize ibTotalOrderButton;
+@synthesize ibChalkboardLabel;
+@synthesize ibCurrentItemImageView;
+@synthesize ibCurrentItemLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -26,6 +34,14 @@
 
 - (void)viewDidUnload
 {
+    [self setIbRemoveItemButton:nil];
+    [self setIbAddItemButton:nil];
+    [self setIbPreviousItemButton:nil];
+    [self setIbNextItemButton:nil];
+    [self setIbTotalOrderButton:nil];
+    [self setIbChalkboardLabel:nil];
+    [self setIbCurrentItemImageView:nil];
+    [self setIbCurrentItemLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -57,4 +73,18 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (IBAction)ibaRemoveItem:(id)sender {
+}
+
+- (IBAction)ibaAddItem:(id)sender {
+}
+
+- (IBAction)ibaLoadPreviousItem:(id)sender {
+}
+
+- (IBAction)ibaLoadNextItem:(id)sender {
+}
+
+- (IBAction)ibaCalculateTotal:(id)sender {
+}
 @end

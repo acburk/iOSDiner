@@ -109,6 +109,24 @@ dispatch_queue_t queue;
     [self updateOrderBoard];
     [self updateCurrentInventoryItem];
     [self updateInventoryButtons];
+    
+    UILabel* removeItemDisplay = [[UILabel alloc] initWithFrame:[ibCurrentItemImageView frame]];
+    [removeItemDisplay setCenter:[ibChalkboardLabel center]];
+    [removeItemDisplay setText:@"-1"];
+    [removeItemDisplay setTextAlignment:UITextAlignmentCenter];
+    [removeItemDisplay setTextColor:[UIColor redColor]];
+    [removeItemDisplay setBackgroundColor:[UIColor clearColor]];
+    [removeItemDisplay setFont:[UIFont boldSystemFontOfSize:32.0]];
+    [[self view] addSubview:removeItemDisplay];
+    
+    [UIView animateWithDuration:1.0
+                     animations:^{
+                         [removeItemDisplay setCenter:[ibCurrentItemImageView center]];
+                         [removeItemDisplay setAlpha:0.0];
+                     } completion:^(BOOL finished) {
+                         [removeItemDisplay removeFromSuperview];
+                     }];
+
 }
 
 - (IBAction)ibaAddItem:(id)sender {
@@ -118,6 +136,22 @@ dispatch_queue_t queue;
     [self updateOrderBoard];
     [self updateCurrentInventoryItem];
     [self updateInventoryButtons];
+    
+    UILabel* addItemDisplay = [[UILabel alloc] initWithFrame:[ibCurrentItemImageView frame]];
+    [addItemDisplay setText:@"+1"];
+    [addItemDisplay setTextColor:[UIColor whiteColor]];
+    [addItemDisplay setBackgroundColor:[UIColor clearColor]];
+    [addItemDisplay setTextAlignment:UITextAlignmentCenter];
+    [addItemDisplay setFont:[UIFont boldSystemFontOfSize:32.0]];
+    [[self view] addSubview:addItemDisplay];
+    
+    [UIView animateWithDuration:1.0
+                     animations:^{
+                         [addItemDisplay setCenter:[ibChalkboardLabel center]];
+                         [addItemDisplay setAlpha:0.0];
+                     } completion:^(BOOL finished) {
+                         [addItemDisplay removeFromSuperview];
+                     }];
 }
 
 - (IBAction)ibaLoadPreviousItem:(id)sender {

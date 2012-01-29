@@ -17,4 +17,7 @@
 - (IODItem*)findKeyForOrderItem:(IODItem*)searchItem;
 - (NSMutableDictionary *)orderItems;
 - (NSString*)orderDescription;
+- (void)addItemToOrder:(IODItem*)inItem;
+- (void)removeItemFromOrder:(IODItem*)inItem;
+
 @end

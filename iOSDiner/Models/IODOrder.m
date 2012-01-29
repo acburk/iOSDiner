@@ -55,4 +55,35 @@
     
     return [orderDescription copy];
 }
+
+- (void)addItemToOrder:(IODItem*)inItem {
+    IODItem* key = [self findKeyForOrderItem:inItem];
+    
+    if (!key) {
+        [[self orderItems] setObject:[NSNumber numberWithInt:1] forKey:inItem];
+    }
+    else {
+        NSNumber* quantity = [[self orderItems] objectForKey:key];
+        int intQuantity = [quantity intValue];
+        intQuantity++;
+        
+        [[self orderItems] removeObjectForKey:key];
+        [[self orderItems] setObject:[NSNumber numberWithInt:intQuantity] forKey:key];
+    }
+}
+
+- (void)removeItemFromOrder:(IODItem*)inItem {
+    IODItem* key = [self findKeyForOrderItem:inItem];
+    
+    if (key) {
+        NSNumber* quantity = [[self orderItems] objectForKey:key];
+        int intQuantity = [quantity intValue];
+        intQuantity--;
+        
+        [[self orderItems] removeObjectForKey:key];
+        
+        if (intQuantity > 0)
+            [[self orderItems] setObject:[NSNumber numberWithInt:intQuantity] forKey:key];
+    }
+}
 @end

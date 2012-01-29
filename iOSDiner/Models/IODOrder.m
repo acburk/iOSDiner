@@ -28,4 +28,31 @@
     return nil;
 }
 
+- (NSMutableDictionary *)orderItems{
+    if (!orderItems) {
+        orderItems = [NSMutableDictionary new];
+    }
+    
+    return orderItems;
+}
+
+- (NSString*)orderDescription {
+    NSMutableString* orderDescription = [NSMutableString new];
+    
+    NSArray* keys = [[[self orderItems] allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        IODItem* item1 = (IODItem*)obj1;
+        IODItem* item2 = (IODItem*)obj2;
+        
+        return [[item1 name] compare:[item2 name]];
+    }];
+    
+    [keys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        IODItem* item = (IODItem*)obj;
+        NSNumber* quantity = (NSNumber*)[[self orderItems] objectForKey:item];
+        
+        [orderDescription appendFormat:@"%@ x%@\n",[item name],quantity];
+    }];
+    
+    return [orderDescription copy];
+}
 @end

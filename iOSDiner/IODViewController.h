@@ -34,5 +34,6 @@
 
 - (void)updateCurrentInventoryItem;
 - (void)updateInventoryButtons;
+- (void)updateOrderBoard;
 
 @end

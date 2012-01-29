@@ -108,9 +108,15 @@ dispatch_queue_t queue;
 }
 
 - (IBAction)ibaLoadPreviousItem:(id)sender {
+    currentItemIndex--;
+    [self updateCurrentInventoryItem];
+    [self updateInventoryButtons];
 }
 
 - (IBAction)ibaLoadNextItem:(id)sender {
+    currentItemIndex++;
+    [self updateCurrentInventoryItem];
+    [self updateInventoryButtons];
 }
 
 - (IBAction)ibaCalculateTotal:(id)sender {
@@ -173,4 +179,12 @@ dispatch_queue_t queue;
     }
 }
 
+- (void)updateOrderBoard {
+    if ([[order orderItems] count] == 0) {
+        [ibChalkboardLabel setText:@"No Items. Please order something!"];
+    }
+    else {
+        [ibChalkboardLabel setText:[order orderDescription]];
+    }
+}
 @end

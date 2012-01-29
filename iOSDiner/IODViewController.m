@@ -7,6 +7,8 @@
 //
 
 #import "IODViewController.h"
+#import "IODItem.h"     // <---- #1
+#import "IODOrder.h"     // <---- #1
 
 @implementation IODViewController
 @synthesize ibRemoveItemButton;
@@ -17,6 +19,8 @@
 @synthesize ibChalkboardLabel;
 @synthesize ibCurrentItemImageView;
 @synthesize ibCurrentItemLabel;
+@synthesize inventory;     // <---- #2
+@synthesize order;     // <---- #2
 
 - (void)didReceiveMemoryWarning
 {
@@ -29,7 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    currentItemIndex = 0;     // <---- #3
+    [self setOrder:[IODOrder new]];     // <---- #4
 }
 
 - (void)viewDidUnload

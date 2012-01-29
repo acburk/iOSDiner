@@ -7,7 +7,9 @@
 //
 
 #import "IODOrder.h"
+#import "IODItem.h"
 
 @implementation IODOrder
+@synthesize orderItems;
 
 @end

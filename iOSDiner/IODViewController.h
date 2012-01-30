@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IODViewController : UIViewController
+@class IODOrder;
+
+@interface IODViewController : UIViewController {
+    int currentItemIndex;
+}
+
+@property (strong, nonatomic) NSMutableArray* inventory;
+@property (strong, nonatomic) IODOrder* order;
 
 @property (weak, nonatomic) IBOutlet UIButton *ibRemoveItemButton;
 @property (weak, nonatomic) IBOutlet UIButton *ibAddItemButton;
@@ -25,7 +32,8 @@
 - (IBAction)ibaLoadNextItem:(id)sender;
 - (IBAction)ibaCalculateTotal:(id)sender;
 
-
-
+- (void)updateCurrentInventoryItem;
+- (void)updateInventoryButtons;
+- (void)updateOrderBoard;
 
 @end

@@ -1,6 +1,6 @@
 #iOS Diner
 
-A tutorial for iOS Storyboards and Blocks at raywenderlich.com
+Tutorial project for iOS Storyboards and Blocks at raywenderlich.com
 
 [How To Use Blocks in iOS 5 Tutorial Part 1](http://www.raywenderlich.com/9328/creating-a-diner-app-using-blocks-part-1)
 
